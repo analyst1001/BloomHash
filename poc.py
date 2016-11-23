@@ -59,9 +59,9 @@ def hashFunc6(word):
 def init():
     hashFuncs.extend([hashFunc1, hashFunc2, hashFunc3, hashFunc4, hashFunc5, hashFunc6]);
 
-def tryBreaking(username):
-    for strLen in range(1, 36):
-        print "Length " + str(strLen);
+def tryBreaking(username, maxLen):
+    for strLen in range(1, maxLen+1):
+        print "Trying Length " + str(strLen);
         for i in itertools.product("abcdefghijklmnopqrstuvwxyz1234567890",repeat=strLen):
             combination  = ''.join(i);
             if checkLogin(username, combination) is True:
@@ -94,7 +94,8 @@ def main():
             print passwd;
         elif inp is 4:
             username = raw_input("Enter username: ");
-            tryBreaking(username);
+            maxLen = input("Enter maximum length: ");
+            tryBreaking(username, maxLen);
         else:
             print "Wrong input!!!";
 
